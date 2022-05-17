@@ -108,10 +108,11 @@
                         @endisset
                     </div>
                 </div>
+                
                 <div class="col">
                     <div class="form-group">
                         {!! Form::label('file', 'Imagen que se mostrara en el post') !!}
-                        {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+                        {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*','wire:model'=>'file']) !!}
                         <p class="mt-3">Elige un imagen que relacione a tu producto que estas creando, que sea
                             prefentemente una imagen cuadrada</p>
                         @error('file')

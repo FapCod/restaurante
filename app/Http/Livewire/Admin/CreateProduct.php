@@ -10,8 +10,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 class CreateProduct extends Component
 {
+    use WithFileUploads;
     public $brand_id="";
     public $subcategory_id="";
     public $category_id="";
@@ -26,6 +29,7 @@ class CreateProduct extends Component
         'name' => 'required|unique:products',
         'slug' => 'required|unique:products',
         'status' => 'required|in:1,2',
+        'file' => 'image|max:1024',
     ];
 
     public function updatedCategoryId($value){
@@ -73,6 +77,14 @@ class CreateProduct extends Component
             }
         }
         $product->save();
+        if($this->file){
+            $image = $this->file;
+            $url = Storage::put('products', $image);
+            $product->image()->create([
+                'url' => $url
+            ]);
+        }
+        
         return redirect()->route('admin.products.edit',$product);
     }
     public function render()
