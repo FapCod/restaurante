@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $brands = Brand::pluck('name', 'id');
+        $brands = Brand::all();
         return view('admin.categories.create',compact('brands'));
     }
 
@@ -34,8 +34,8 @@ class CategoryController extends Controller
         ]);
         $category = Category::create($request->all());
 
-        if($request->brand_id){
-            $category->brands()->attach($request->brand_id);
+        if($request->brands){
+            $category->brands()->sync($request->brands);
         }
 
 
@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        $brands = Brand::pluck('name', 'id');
+        $brands = Brand::all();
         return view('admin.categories.edit', compact('category','brands'));
     }
 
@@ -60,8 +60,8 @@ class CategoryController extends Controller
             'slug' => "required|unique:categories,slug,{$category->id}",
         ]);
         $category->update($request->all());
-        if($request->brand_id){
-            $category->brands()->sync($request->brand_id);
+        if($request->brands){
+            $category->brands()->sync($request->brands);
         }
         return redirect()->route('admin.categories.edit',$category)->with('status', 'Categoría actualizada con éxito');
     }

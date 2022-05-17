@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * 1 no tiene
+     * 2 tiene
      *
      * @return void
      */

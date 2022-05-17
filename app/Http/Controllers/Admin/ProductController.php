@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Subcategory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -37,8 +38,9 @@ class ProductController extends Controller
    
     public function store(Request $request)
     {
-       // if($request->user_id == auth()->user()->id){
+            
             $request->validate([
+                'category_id' => 'required',
                 'brand_id' => 'required',
                 'subcategory_id' => 'required',
                 'name' => 'required|unique:products',
@@ -46,6 +48,23 @@ class ProductController extends Controller
                 'status' => 'required|in:1,2',
                 'file' => 'image'
             ]);
+        
+            if($request->subcategory_id){
+                if(!$request->subcategory->presentation){
+                    $request->validate([
+                        'category_id' => 'required',
+                        'brand_id' => 'required',
+                        'subcategory_id' => 'required',
+                        'name' => 'required|unique:products',
+                        'slug' => 'required|unique:products',
+                        'status' => 'required|in:1,2',
+                        'file' => 'image',
+                        'presentation'=> 'required',
+                        'stock' => 'required|numeric'
+                    ]);
+                }
+               
+            }
             $product = Product::create($request->all());
 
             if($request->file('file')){
@@ -56,10 +75,10 @@ class ProductController extends Controller
                 ]);
             }
 
+            Cache::flush();
+
             return redirect()->route('admin.products.edit',$product)->with('status', '✅Producto creado con éxito👍');
-        //}else{
-           // return redirect()->route('admin.products.index')->with('status', '❌No tienes permisos para crear productos❌');
-        //}
+        
 
         
     }
@@ -108,6 +127,7 @@ class ProductController extends Controller
                     ]);
                 }
             }
+            Cache::flush();
             return redirect()->route('admin.products.edit',$product)->with('status', '✅Producto actualizado con éxito👍');
 
     }
@@ -117,6 +137,7 @@ class ProductController extends Controller
     {
         $this->authorize('author', $product);
         $product->delete();
+        Cache::flush();
         return redirect()->route('admin.products.index')->with('status', '✅Producto eliminado con éxito👍');
     }
 }

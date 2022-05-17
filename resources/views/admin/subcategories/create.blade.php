@@ -30,6 +30,22 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                {{-- tiene presentacion --}}
+                <div class="form-group">
+                    {!! Form::label('presentation', 'Tiene presentacion?') !!}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation" value="1" checked>
+                        <label class="form-check-label" for="presentation">
+                            No
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation" value="2">
+                        <label class="form-check-label" for="presentation">
+                            Si
+                        </label>
+                </div>
+                {{-- fin tiene presentacion --}}
                 <div class="form-group">
                     {!! Form::label('icon', 'Icono &#40; campo opcional &#41;') !!}
                     {!! Form::text('icon', null, ['class' => 'form-control', 'id' => 'icon','placeholder' => 'Ingresa un icono &#40; campo opcional &#41;']) !!}

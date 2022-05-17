@@ -28,10 +28,24 @@
                     {!! Form::label('icon', 'Icono &#40; campo opcional &#41;') !!}
                     {!! Form::text('icon', null, ['class' => 'form-control', 'id' => 'icon','placeholder' => 'Ingresa un icono &#40; campo opcional &#41;']) !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::label('brand_id', 'Selecciona la marca a la que pertenecera la categoria') !!}
-                    {!! Form::select('brand_id', $brands, null, ['class' => 'form-control', 'id' => 'brand_id']) !!}
-                </div>
+               {{-- marca --}}
+                
+               <h2 class="h3">Lista de marcas</h2>
+               <div class="form-group row row-cols-6 sm:row-cols-4">
+                   @foreach ($brands as $brand)
+                       <div class="col-4 md:col-5">
+                           <label>
+                               {!! Form::checkbox('brands[]',$brand->id, null,['class'=>'mr-1']) !!}
+                               {{ $brand->name }}
+                           </label>
+                       </div>
+                       
+                   @endforeach
+               </div>
+
+           
+
+           {{-- fin marca --}}
                 <div class="form-group">
                     {!! Form::label('slug', 'Slug') !!}
                     {!! Form::text('slug', null, ['class' => 'form-control ', 'id' => 'slug','readonly']) !!}

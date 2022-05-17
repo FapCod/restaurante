@@ -7,11 +7,28 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('status',2)->latest('id')->paginate(20);
+
+        if(request()->page)
+        {
+            $key = 'products'.request()->page;
+        }
+        else
+        {
+            $key = 'products';
+        }
+
+
+        if (Cache::has($key)) {
+            $products = Cache::get($key);
+        } else {
+            $products = Product::where('status',2)->latest('id')->paginate(20);
+            Cache::put($key, $products, 60);
+        }
         return view('product.index',compact('products'));
     }
     public function show(Product $product)

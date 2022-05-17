@@ -3,7 +3,7 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>Edit product</h1>
+<h1 class="font-weight-normal text-center">Editar product</h1>
 @stop
 
 @section('content')
@@ -12,27 +12,7 @@
         {{ session('status') }}
     </div>
     @endif
-    <div class="card">
-        <div class="card-header">
-            <div class="col-3">
-                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i>
-                    Ir a lista de productos
-                </a>
-            </div>
-        </div>
-
-
-        <div class="card-body">
-            {!! Form::model($product,['route' => ['admin.products.update',$product], 'files' => true,'method' => 'PUT']) !!}
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
-            @include('admin.products.partials.form')
-            <div class="form-group">
-                {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
-            </div>
-            {!! Form::close() !!}
-        </div>
-    </div>
+    @livewire('admin.edit-product', ['product' => $product])
 @stop
 
 @section('css')
@@ -64,7 +44,7 @@
         });
 
         //cambiar de imagen
-        document.getElementById("file").addEventListener("change", cambiarImagen);
+        document.getElementById("product.file").addEventListener("change", cambiarImagen);
 
         function cambiarImagen(event) {
             var file = event.target.files[0];

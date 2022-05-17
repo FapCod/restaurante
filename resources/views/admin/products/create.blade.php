@@ -3,30 +3,11 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>Crear nuevo product</h1>
+    <h1 class="font-weight-normal text-center">Crear nuevo product</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <div class="col-3">
-                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i>
-                    Ir a lista de productos
-                </a>
-            </div>
-        </div>
-
-
-        <div class="card-body">
-            {!! Form::open(['route' => 'admin.products.store', 'files' => true]) !!}
-            @include('admin.products.partials.form')
-            <div class="form-group">
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-            </div>
-            {!! Form::close() !!}
-        </div>
-    </div>
+   @livewire('admin.create-product')
 @stop
 
 @section('css')
