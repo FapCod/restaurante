@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Subcategory;
-use Illuminate\Support\Facades\Cache;
+// use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -75,7 +75,7 @@ class ProductController extends Controller
                 ]);
             }
 
-            Cache::flush();
+            // Cache::flush();
 
             return redirect()->route('admin.products.edit',$product)->with('status', '✅Producto creado con éxito👍');
         
@@ -127,7 +127,7 @@ class ProductController extends Controller
                     ]);
                 }
             }
-            Cache::flush();
+            // Cache::flush();
             return redirect()->route('admin.products.edit',$product)->with('status', '✅Producto actualizado con éxito👍');
 
     }
@@ -137,7 +137,7 @@ class ProductController extends Controller
     {
         $this->authorize('author', $product);
         $product->delete();
-        Cache::flush();
+        // Cache::flush();
         return redirect()->route('admin.products.index')->with('status', '✅Producto eliminado con éxito👍');
     }
 }

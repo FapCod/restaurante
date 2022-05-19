@@ -97,9 +97,12 @@
             </div>
             {{-- fin marcas y stock --}}
             {{-- IMAGEN --}}
+            <p>{{ $file }}</p>
+            {{ $this->product->image }}
+            {{-- <p>{{ $this->product->image->url }}</p> --}}
             <div class="row mb-3">
                 <div class="col">
-                    <div class="image-wrapper">
+                    <div class="image-wrapper" wire:ignore>
                         @isset($product->image)
                             <img id="picture" src="{{ Storage::url($product->image->url) }}" alt="{{ $product->name }}">
                         @else
@@ -112,7 +115,7 @@
                 <div class="col">
                     <div class="form-group">
                         {!! Form::label('product.file', 'Imagen que se mostrara en el post') !!}
-                        {!! Form::file('product.file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+                        {!! Form::file('product.file', ['class' => 'form-control-file', 'accept' => 'image/*','wire:model' => 'file']) !!}
                         <p class="mt-3">Elige un imagen que relacione a tu producto que estas creando, que sea
                             prefentemente una imagen cuadrada</p>
                         @error('file')
@@ -128,6 +131,13 @@
                 class="btn btn-primary ml-auto p-2 ">Editar Producto</button>
         </div>
     </div>
+
+
+    @if ($this->subcategory)
+        @if ($this->subcategory->presentation == 2)
+            @livewire('admin.presentation-product', ['product' => $product], key($product->id))
+        @endif
+    @endif
 </div>
 
 

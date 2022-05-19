@@ -9,8 +9,13 @@ use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\TryCatch;
+
 class EditProduct extends Component
 {
+    use WithFileUploads;
     public $product;
     public $brand_id = "";
     public $subcategory_id = "";
@@ -19,6 +24,7 @@ class EditProduct extends Component
     public $subcategories = [];
     public $brands = [];
     public $slug,$name;
+    public $file;
     protected $rules=[
         'category_id' => 'required',
         'product.brand_id' => 'required',
@@ -28,6 +34,7 @@ class EditProduct extends Component
         'product.status' => 'required|in:1,2',
         'product.description' => '',
         'product.stock' => 'numeric',
+        'file' => 'image',
     ];
     public function updatedCategoryId($value)
     {
@@ -46,7 +53,7 @@ class EditProduct extends Component
         return Subcategory::find($this->product->subcategory_id);
     }
      // generar el slug a partir del name
-     public function updatedProductName($value){
+     public function updatedName($value){
         $this->slug = Str::slug($value);
     }
 
@@ -62,7 +69,33 @@ class EditProduct extends Component
         
         $this->validate($rules);
         $this->product->slug = $this->slug;
+        $this->product->name = $this->name;
         $this->product->save();
+        
+        try {
+                if($this->file){
+                    $image = $this->file;
+                    $url = Storage::put('products', $image);
+                    
+                    if($this->product->image){
+                        Storage::delete($this->product->image->url);
+                        $this->product->image()->update([
+                            'url' => $url
+                        ]);
+                    }else{
+                        $this->product->image()->create([
+                            'url' => $url
+                        ]);
+                        $this->file->store('products');
+                    }
+                }
+        }
+        catch(\Exception $e)
+        {
+            $this->emit('error',$e->getMessage());
+        }
+        return redirect()->route('admin.products.edit',$this->product)->with('status', '✅Producto actualizado con éxito👍');
+
     }
 
     public function mount(Product $product)
@@ -77,6 +110,7 @@ class EditProduct extends Component
         $this->brands = Brand::whereHas('categories', function (Builder $query) {
             $query->where('category_id', $this->category_id);
         })->get();
+
         
     }
     public function render()

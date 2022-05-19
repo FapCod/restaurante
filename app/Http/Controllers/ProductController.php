@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Presentation;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -34,7 +35,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $this->authorize('published',$product);
-
+        $presentations = $product->presentations;
         $similares = Product::where('status',2)
                             ->where('subcategory_id',$product->subcategory->id)
                             ->where('id','!=',$product->id)
@@ -42,7 +43,7 @@ class ProductController extends Controller
                             ->take(4)
                             ->get();
        
-        return view('product.show',compact('product','similares'));
+        return view('product.show',compact('product','similares','presentations'));
     }
     public function category(Category $category)
     {
@@ -65,6 +66,30 @@ class ProductController extends Controller
                             ->paginate(20);
         return view('product.subcategory',compact('products','subcategory'));
         
+    }
+    public function updateStock(Request $request,Presentation $presentation)
+    {
+        $request->validate([
+            'stock' => 'required|numeric:min:0'
+        ]);
+        if($presentation->stock < $request->stock || $request->stock < 0){
+            return back()->with('status','No se pudo hacer la operacion');
+        }
+        $presentation->stock = $presentation->stock - $request->stock;
+        $presentation->save();
+        return back()->with('status','Stock actualizado');
+       
+    }
+    public function updatestockProduct(Request $request,Product $product){
+        $request->validate([
+            'stock' => 'required|numeric:min:0'
+        ]) ;
+        if($product->stock < $request->stock || $request->stock < 0){
+            return back()->with('status','No se pudo hacer la operacion');
+        }
+        $product->stock = $product->stock - $request->stock;
+        $product->save();
+        return back()->with('status','Stock actualizado');
     }
 
 }

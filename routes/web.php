@@ -16,6 +16,8 @@ use App\Http\Controllers\ProductController;
 // rutas de productos
 Route::get('/',[ProductController::class,'index'])->name('product.index');
 Route::get('product/{product}',[ProductController::class,'show'])->name('product.show');
+Route::put('product/{presentation}',[ProductController::class,'updateStock'])->name('product.updateStock');
+Route::put('product/stock/{product}',[ProductController::class,'updatestockProduct'])->name('product.updatestockproduct');
 
 // rutas de categorias
 Route::get('category/{category}',[ProductController::class,'category'])->name('product.category');

@@ -96,9 +96,11 @@
             </div>
             {{-- fin marcas y stock --}}
             {{-- IMAGEN --}}
+            <p>{{ $this->file }}</p>
+           
             <div class="row mb-3">
                 <div class="col">
-                    <div class="image-wrapper">
+                    <div class="image-wrapper" wire:ignore>
                         @isset($product->image)
                             <img id="picture" src="{{ Storage::url($product->image->url) }}" alt="{{ $product->name }}">
                         @else
