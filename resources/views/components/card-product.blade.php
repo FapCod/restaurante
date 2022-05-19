@@ -26,8 +26,9 @@
             <a href="{{ route('product.subcategory',$product->subcategory) }}" class="inline-block px-3 bg-red-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->name }}</a> 
         </div>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">Usar</button>
-        <button class="btn btn-primary">Agregar</button>
+        <button class="btn bg-gray-800 text-white">
+          <a href="{{ route('product.show',$product) }}">Usar</a>     
+        </button>
       </div>
     </div>
 </div>
