@@ -299,6 +299,13 @@ return [
             'icon'        => 'fas fa-fw fa-plus-circle',
             'can'         => 'admin.products.create',
         ],
+        ['header' => 'OPCIONES DE PRODUCTOS'],
+        [
+            'text'       => 'Reportes de productos',
+            'route'        => 'admin.reports.index',
+            'icon'        => 'fa fa-fw fa-file-pdf',
+            // 'can'         => 'admin.products.create',
+        ],
     ],
 
     /*
@@ -337,7 +344,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -382,7 +389,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
