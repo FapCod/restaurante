@@ -1,15 +1,15 @@
-<div>
-    <div class="card shadow p-3 mb-5 bg-white rounded">
+<div class="text-dark p-2" >
+    <div class="card shadow mb-4  rounded" style="background-color: #F7D24E">
         <div class="card-header">
             <div class="col-3 sm:cols-4">
-                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-dark">
                     <i class="fas fa-arrow-left"></i>
                     Productos
                 </a>
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body ">
             {{-- hacer una grid de dos columnas --}}
 
             {{-- Categoria y Subcategoria --}}
@@ -127,21 +127,9 @@
         </div>
         <div class="d-flex">
             <button wire:loading.attr="disabled" wire:target="save" wire:click="save"
-                class="btn btn-primary ml-auto p-2 ">Guardar Producto</button>
+                class="btn btn-dark  p-2 mb-4 ml-4 ">Guardar Producto</button>
         </div>
     </div>
 
 </div>
 
-
-
-
-
-{{-- DESCOMENTAR PARA QUE FUNCIONE --}}
-{{-- {!! Form::open(['route' => 'admin.products.store', 'files' => true]) !!}
-            @include('admin.products.partials.form')
-            <div class="form-group">
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary','wire:target'=>'store']) !!}
-            </div>
-            {!! Form::close() !!} --}}
-{{-- FIN DESCOMENTAR PARA QUE FUNCIONE --}}

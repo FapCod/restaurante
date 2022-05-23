@@ -1,9 +1,9 @@
-<div>
+<div class="text-dark p-2" >
 
-    <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card shadow  mb-5  rounded" style="background-color: #F7D24E">
         <div class="card-header">
             <div class="col-3">
-                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-dark">
                     <i class="fas fa-arrow-left"></i>
                     Ir a lista de productos
                 </a>
@@ -128,7 +128,7 @@
         </div>
         <div class="d-flex">
             <button wire:loading.attr="disabled" wire:target="save" wire:click="save"
-                class="btn btn-primary ml-auto p-2 ">Editar Producto</button>
+                class="btn btn-dark  p-2 mb-4 ml-4 ">Editar Producto</button>
         </div>
     </div>
 
@@ -139,12 +139,3 @@
         @endif
     @endif
 </div>
-
-
-{{-- {!! Form::model($product,['route' => ['admin.products.update',$product], 'files' => true,'method' => 'PUT']) !!}
-{!! Form::hidden('user_id', auth()->user()->id) !!}
-@include('admin.products.partials.form')
-<div class="form-group">
-    {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
-</div>
-{!! Form::close() !!} --}}

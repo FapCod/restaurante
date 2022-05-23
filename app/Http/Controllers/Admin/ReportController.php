@@ -39,12 +39,11 @@ class ReportController extends Controller
         return $pdf->stream('PDFProductos.pdf');
         
     }
-    // public function createPdfFecha($start_date,$end_date){
-    //     $status="";
-    //     $fi = Carbon::parse($start_date)->format('Y-m-d 00:00:00');
-    //     $ff = Carbon::parse($end_date)->format('Y-m-d 23:59:59');
-    //     $products = Product::whereBetween('created_at', [$fi, $ff])->orderBy('id','DESC')->get();
-    //     $pdf = PDF::loadView('admin.reports.reportPdf', compact('products','start_date', 'end_date', 'status'));
-    //     return $pdf->stream('PDFProductos.pdf');
-    // }
+    public function createPdfStatus($status){
+        $start_date="";
+        $end_date="";
+        $products = Product::where('status',$status)->orderBy('id','DESC')->get();
+        $pdf = PDF::loadView('admin.reports.reportPdf', compact('products','start_date', 'end_date', 'status'));
+        return $pdf->stream('PDFProductos.pdf');
+    }
 }

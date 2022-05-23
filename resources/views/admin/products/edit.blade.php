@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-<h1 class="font-weight-normal text-center">Editar product</h1>
+<div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+    <h1 class="m-4 font-weight-bold">Editar producto <span class="badge badge-secondary ">Gestion</span></h1>
+</div>
 @stop
 @section('plugins.Livewire', true)
 @section('plugins.Sweetalert2', true)

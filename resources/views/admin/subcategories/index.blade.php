@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>lista subcategoria</h1>
+<div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+    <h1 class="m-4 font-weight-bold">Lista de Subcategorias <span class="badge badge-secondary ">Gestion</span></h1>
+</div>
 @stop
 
 @section('content')
@@ -13,37 +15,39 @@
     </div>
     @endif
 
-    <div class="card">
-        <div class="card-header">
-            <a class="btn btn-success" href="{{ route('admin.subcategories.create') }}">Agregar Subcategoria</a>
-        </div>
-        <div class="card-body">
-            <table  class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th colspan="2">ACCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($subcategories as $subcategory)
-                    <tr>
-                        <td>{{ $subcategory->id }}</td>
-                        <td>{{ $subcategory->name }}</td>
-                        <td width="100">
-                            <a href="{{ route('admin.subcategories.edit', $subcategory) }}" class="btn btn-primary">Editar</a>
-                        </td>
-                        <td width="100">
-                            <form action="{{ route('admin.subcategories.destroy', $subcategory) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-            </table>
+    <div class="p-2">
+        <div class="card text-dark" style="background-color: #F7D24E">
+            <div class="card-header">
+                <a class="btn btn-dark" href="{{ route('admin.subcategories.create') }}">Agregar Subcategoria</a>
+            </div>
+            <div class="card-body">
+                <table  class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th colspan="2">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($subcategories as $subcategory)
+                        <tr>
+                            <td>{{ $subcategory->id }}</td>
+                            <td>{{ $subcategory->name }}</td>
+                            <td width="100">
+                                <a href="{{ route('admin.subcategories.edit', $subcategory) }}" class="btn btn-primary">Editar</a>
+                            </td>
+                            <td width="100">
+                                <form action="{{ route('admin.subcategories.destroy', $subcategory) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                </table>
+            </div>
         </div>
     </div>
     

@@ -1,5 +1,5 @@
-<div>
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+<div class="text-dark" style="background-color: #F7D24E">
+    <div class="shadow-lg p-3 mb-5  rounded">
         
         <div>
             <x-jet-label>Presentacion</x-jet-label>
@@ -32,7 +32,7 @@
                     Cancelar
                 </x-jet-button>
             @else
-                <x-jet-button wire:click="save" wire:loading.class="disabled" wire:target="save" class="mt-2 btn-primary rounded-lg">
+                <x-jet-button wire:click="save" wire:loading.class="disabled" wire:target="save" class="mt-2 btn-dark rounded-lg">
                     Agregar
                 </x-jet-button>
             @endif

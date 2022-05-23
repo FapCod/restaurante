@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card text-dark" style="background-color: #F7D24E">
     <div class="card-header">
-        <a class="btn btn-success mb-4" href="{{ route('admin.users.create') }}">Agregar user</a>
+        <a class="btn btn-dark mb-4" href="{{ route('admin.users.create') }}">Agregar user</a>
         <input wire:model="search" type="text" class="form-control" placeholder="Buscar user">
     </div>
     @if ($users->count() > 0)

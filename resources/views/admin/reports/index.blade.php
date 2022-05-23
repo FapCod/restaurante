@@ -3,11 +3,14 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>Reportes</h1>
+<div class="container">
+    <div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+        <h1 class="m-4 font-weight-bold">Reportes<span class="badge badge-secondary ">Gestion</span></h1>
+    </div>
+</div>
 @stop
 
 @section('content')
-    <p>puto reportes.</p>
     @livewire('admin.report-index')
 @stop
 

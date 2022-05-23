@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container text-dark p-2" >
     {{-- seleccionar fechar de ingreso de productos --}}
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="background-color: #F7D24E">
                 <div class="card-header">
                     {{-- {{ url('reportes/pdf/clientes' . '/' . $fechainicio . '/' . $fechafin) . '/' . $estado }} --}}
-                    <a class="btn btn-success mb-4" 
+                    <a class="btn btn-dark mb-4" 
                     target="_blank" href="{{ url('admin/reportes/pdf/products' . '/' . $start_date . '/' . $end_date ). '/' . $status }}">Generar PDF</a>
                     <a class="btn btn-info mb-4" 
                     wire:click="$emit('cleanupEvent')">Eliminar filtros</a>

@@ -24,20 +24,13 @@ Route::resource('users', UserController::class)->names('admin.users');
 // rutas de roles
 Route::resource('roles', RoleController::class)->names('admin.roles');
 
-// TODO: Implementar el resto de las rutas PARA LOS REPORTES
-// ? que tipo de reportes quieres ver?
-// ! no olvidar implementar urgentemente los reportes
 // ! no olvidar la subida de imagenes de las productos.
 
 // rutas de reportes
-Route::get('/reportes', [ReportController::class, 'index'])->name('admin.reports.index');
-// Route::get('reportes/pdf/products/{status=2}/{start_date?}/{end_date?}',[ReportController::class,'createPdf']);
-
-Route::get('reportes/pdf/products/',[ReportController::class,'createPdf']);
-
-Route::get('reportes/pdf/products/{status}',[ReportController::class,'createPdf']);
-
-Route::get('reportes/pdf/products/{start_date}/{end_date}',[ReportController::class,'createPdf']);
-
-Route::get('reportes/pdf/products/{start_date}/{end_date}/{status}',[ReportController::class,'createPdf']);
-
+Route::controller(ReportController::class)->group(function () {
+    Route::get('/reportes',  'index')->name('admin.reports.index');
+    Route::get('reportes/pdf/products/', 'createPdf');
+    Route::get('reportes/pdf/products/{status}','createPdfStatus');
+    Route::get('reportes/pdf/products/{start_date}/{end_date}','createPdf');
+    Route::get('reportes/pdf/products/{start_date}/{end_date}/{status}','createPdf');
+});

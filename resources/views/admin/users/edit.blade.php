@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>Actualizar rol</h1>
+<div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+    <h1 class="m-4 font-weight-bold">Editar usuario <span class="badge badge-secondary ">Gestion</span></h1>
+</div>
 @stop
 
 @section('content')
@@ -13,52 +15,54 @@
         </div>
     @endif
 
-    <div class="card">
-        <div class="card-body">
-            <p class="h5">Nombre:</p>
-            <p class="form-control">{{ $user->name }}</p>
-            <h2 class="h5">Listado de roles:</h2>
-            {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT']) !!}
-            <div class="form-group">
-                {!! Form::label('name', 'Nombre') !!}
-                {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Ingresa el nombre']) !!}
-
-                @error('name')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group">
-                {!! Form::label('email', 'Email') !!}
-                {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Ingresa el email']) !!}
-
-                @error('email')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group">
-                {!! Form::label('password', 'Contraseña') !!}
-                {!! Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder' => 'Ingresa la contraseña']) !!}
-                @error('password')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group">
-                {!! Form::label('password_confirmation', 'Confirmar contraseña') !!}
-                {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation', 'placeholder' => 'Confirma la contraseña']) !!}
-                @error('password_confirmation')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            @foreach ($roles as $role)
-                <div class="form-check">
-                    {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'form-check-input']) !!}
-                    {!! Form::label($role->name, $role->name, ['class' => 'form-check-label']) !!}
+    <div class="p-2">
+        <div class="card text-dark" style="background-color: #F7D24E">
+            <div class="card-body">
+                <p class="h5">Nombre:</p>
+                <p class="form-control">{{ $user->name }}</p>
+                <h2 class="h5">Listado de roles:</h2>
+                {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT']) !!}
+                <div class="form-group">
+                    {!! Form::label('name', 'Nombre') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Ingresa el nombre']) !!}
+    
+                    @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
-            @endforeach
-            <div class="form-group">
-                {!! Form::submit('Actualizar rol', ['class' => 'btn btn-primary']) !!}
+                <div class="form-group">
+                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Ingresa el email']) !!}
+    
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    {!! Form::label('password', 'Contraseña') !!}
+                    {!! Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder' => 'Ingresa la contraseña']) !!}
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    {!! Form::label('password_confirmation', 'Confirmar contraseña') !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation', 'placeholder' => 'Confirma la contraseña']) !!}
+                    @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                @foreach ($roles as $role)
+                    <div class="form-check">
+                        {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'form-check-input']) !!}
+                        {!! Form::label($role->name, $role->name, ['class' => 'form-check-label']) !!}
+                    </div>
+                @endforeach
+                <div class="form-group">
+                    {!! Form::submit('Actualizar rol', ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
             </div>
-            {!! Form::close() !!}
         </div>
     </div>
 @stop

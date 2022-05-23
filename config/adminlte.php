@@ -124,12 +124,12 @@ return [
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_content_wrapper' => 'text-success bg-dark',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-dark navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -226,11 +226,7 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -299,7 +295,7 @@ return [
             'icon'        => 'fas fa-fw fa-plus-circle',
             'can'         => 'admin.products.create',
         ],
-        ['header' => 'OPCIONES DE PRODUCTOS'],
+        ['header' => 'REPORTES DE PRODUCTOS'],
         [
             'text'       => 'Reportes de productos',
             'route'        => 'admin.reports.index',

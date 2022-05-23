@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>lista roles</h1>
+<div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+    <h1 class="m-4 font-weight-bold">Lista de roles <span class="badge badge-secondary ">Gestion</span></h1>
+</div>
 @stop
 
 @section('content')
@@ -12,9 +14,9 @@
         {{ session('status') }}
     </div>
     @endif
-    <div class="card">
+    <div class="card text-dark" style="background-color: #F7D24E">
         <div class="card-header">
-            <a class="btn btn-success" href="{{ route('admin.roles.create') }}">Agregar roles</a>
+            <a class="btn btn-dark" href="{{ route('admin.roles.create') }}">Agregar roles</a>
         </div>
 
         <div class="card-body">

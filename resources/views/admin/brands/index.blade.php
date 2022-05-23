@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>lista Marcas</h1>
+    <div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+        <h1 class="m-4 font-weight-bold">Lista de marcas <span class="badge badge-secondary ">Gestion</span></h1>
+    </div>
 @stop
 
 @section('content')
@@ -12,9 +14,10 @@
         {{ session('status') }}
     </div>
     @endif
-    <div class="card">
+   <div class="p-2">
+    <div class="card text-dark" style="background-color: #F7D24E">
         <div class="card-header">
-            <a class="btn btn-success" href="{{ route('admin.brands.create') }}">Agregar Marca</a>
+            <a class="btn btn-dark" href="{{ route('admin.brands.create') }}">Agregar Marca</a>
         </div>
 
         <div class="card-body">
@@ -48,6 +51,7 @@
             </table>
         </div>
     </div>
+   </div>
 @stop
 
 @section('css')

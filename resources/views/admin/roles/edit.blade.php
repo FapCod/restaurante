@@ -3,7 +3,9 @@
 @section('title', 'Mi Alexia')
 
 @section('content_header')
-    <h1>Editar Rol</h1>
+<div class=" mx-auto content card text-center mp-10  text-dark" style="background-color: #F7D24E">
+    <h1 class="m-4 font-weight-bold">Editar rol <span class="badge badge-secondary ">Gestion</span></h1>
+</div>
 @stop
 
 @section('content')
@@ -13,14 +15,16 @@
         </div>
     @endif
 
-    <div class="card">
-        <div class="card-body">
-            {!! Form::model($role,['route' => ['admin.roles.update',$role],'method'=>'PUT']) !!}
-                @include('admin.roles.partials.form')
-                <div class="form-group">
-                    {!! Form::submit('Editar', ['class' => 'btn btn-primary']) !!}
-                </div>
-            {!! Form::close() !!}
+    <div class="p-2">
+        <div class="card text-dark" style="background-color: #F7D24E" >
+            <div class="card-body">
+                {!! Form::model($role,['route' => ['admin.roles.update',$role],'method'=>'PUT']) !!}
+                    @include('admin.roles.partials.form')
+                    <div class="form-group">
+                        {!! Form::submit('Editar', ['class' => 'btn btn-dark']) !!}
+                    </div>
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop
