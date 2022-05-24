@@ -13,7 +13,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-
         if(request()->page)
         {
             $key = 'products'.request()->page;
@@ -22,8 +21,6 @@ class ProductController extends Controller
         {
             $key = 'products';
         }
-
-
         if (Cache::has($key)) {
             $products = Cache::get($key);
         } else {

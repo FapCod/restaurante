@@ -1,7 +1,7 @@
 @props(['product'])
 
 <div class="card w-96 bg-base-100 shadow-xl">
-    <figure class="w-full bg-cover bg-center">
+    <figure class="w-full bg-cover bg-center h-16">
       @if ($product->image)
         <img src="{{ Storage::url($product->image->url) }}" alt="{{ $product->name }}" />
       @else
