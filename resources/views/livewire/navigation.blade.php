@@ -14,6 +14,10 @@
         background-color: #bf9a14;
         border-radius: 20px;
     }
+    .scroll_horizontal::-webkit-scrollbar-thumb {
+        background-color: #f2f2f2;
+        border-radius: 20px;
+    }
     @media screen and (max-width:1100px){
         div.scroll_horizontal {
             margin-bottom: 0;
@@ -87,16 +91,6 @@
                     <img class="hidden lg:block h-8 w-auto" src={{ asset('img/logo.png') }}>
                 </a>
                 {{-- MENU --}}
-                {{-- <div class="hidden sm:block sm:ml-6">
-                    <div class="flex space-x-4">
-                        @foreach ($categories as $category)
-                            <a href="{{ route('product.category', $category) }}"
-                            class="text-gray-700 hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
-                        @endforeach
-                    </div>
-                </div> --}}
-                {{-- prueba de categorias --}}
-
                 <div class="hidden sm:block sm:ml-6 ">
                     <div class=" scroll_horizontal flex space-x-4 md:w-14">
                         @foreach ($categories as $category)
@@ -105,8 +99,6 @@
                         @endforeach
                     </div>
                 </div>
-
-                {{-- end prueba de categorias --}}
             </div>
             @auth
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2   sm:static sm:inset-auto sm:ml-6 sm:pr-0">

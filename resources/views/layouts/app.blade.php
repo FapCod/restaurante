@@ -44,7 +44,7 @@
 
     {{-- footer --}}
 
-    <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+    <footer class="footer footer-center p-10  text-gray-100 rounded" style="background-color: #d9b224">
         {{-- <div class="grid grid-flow-col gap-4">
           <a class="link link-hover">About us</a> 
           <a class="link link-hover">Contact</a> 

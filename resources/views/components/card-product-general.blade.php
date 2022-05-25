@@ -16,21 +16,21 @@
         <p>{{ $product->description }}</p>
         <div class="text-sm breadcrumbs">
             @if ($product->stock > 0)
-                <span class="inline-block px-3 bg-red-600 h-6 text-white rounded-full">Su
+                <span class="inline-block px-3 bg-yellow-500 text-white rounded-full">Su
                     stock:{{ $product->stock }}</span>
             @else
-                <span class="inline-block px-3 bg-red-600 h-6 text-white rounded-full">Tiene stock por
+                <span class="inline-block px-3 bg-yellow-500 h-6 text-white rounded-full">Tiene stock por
                     presentaciones</span>
             @endif
         </div>
         <div class="text-sm breadcrumbs">
             <a href="{{ route('product.category', $product->subcategory->category) }}"
-                class="inline-block px-3 mb-4 bg-red-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->category->name }}</a>
+                class="inline-block px-3 mb-4 bg-yellow-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->category->name }}</a>
 
-            <span class="inline-block px-3 bg-red-600 h-6 text-white rounded-full ">&gt</span>
+            <span class="inline-block px-3 bg-yellow-600 h-6 text-white rounded-full ">&gt</span>
 
             <a href="{{ route('product.subcategory', $product->subcategory) }}"
-                class="inline-block px-3 bg-red-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->name }}</a>
+                class="inline-block px-3 bg-cyan-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->name }}</a>
         </div>
         <div class="card-actions justify-end">
             <button class="btn bg-gray-800 text-white">

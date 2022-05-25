@@ -1,6 +1,6 @@
 <div class="bg-cover w-full " style="background-image: url('{{ asset('img/bgg.png')}}');">
     <x-app-layout>
-        SOY EL ARCHIVO SUBCATEGORY.BLADE.PHP
+        
         <div class="container py-8">
             <div class="mb-4">
                 <h1 class="underline decoration-wavy text-gray-800 uppercase text-3xl text-center font-bold"> SubCategoria: {{ $subcategory->name }}</h1>

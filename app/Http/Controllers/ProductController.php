@@ -38,7 +38,7 @@ class ProductController extends Controller
                             ->where('id','!=',$product->id)
                             ->latest('id')
                             ->take(4)
-                            ->get();
+                            ->paginate(20);
        
         return view('product.show',compact('product','similares','presentations'));
     }
@@ -49,7 +49,7 @@ class ProductController extends Controller
                                 $query->where('category_id',$category->id);
                             })
                             ->latest('id')
-                            ->paginate(20);
+                            ->paginate(12);
         return view('product.category',compact('products','category'));
         
     }
@@ -60,7 +60,7 @@ class ProductController extends Controller
                                 $query->where('id',$subcategory->id);
                             })
                             ->latest('id')
-                            ->paginate(20);
+                            ->paginate(12);
         return view('product.subcategory',compact('products','subcategory'));
         
     }
