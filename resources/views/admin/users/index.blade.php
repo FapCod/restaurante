@@ -16,7 +16,9 @@
         {{ session('status') }}
     </div>
     @endif
-    @livewire('admin.users-index')
+    <div class="py-2">
+        @livewire('admin.users-index')
+    </div>
    
 @stop
 

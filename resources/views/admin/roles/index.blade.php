@@ -47,6 +47,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="py-4 px-4">
+            {{ $roles->links() }}
+        </div>
     </div>
 @stop
 

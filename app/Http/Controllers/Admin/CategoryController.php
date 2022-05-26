@@ -15,7 +15,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         }
 
 
-        return redirect()->route('admin.categories.edit',compact('category','brands'))->with('status', 'Categoría creada con éxito');
+        return redirect()->route('admin.categories.index')->with('status', 'Categoría creada con éxito ✅👍');
     }
 
     public function show(Category $category)
@@ -63,12 +63,12 @@ class CategoryController extends Controller
         if($request->brands){
             $category->brands()->sync($request->brands);
         }
-        return redirect()->route('admin.categories.edit',$category)->with('status', 'Categoría actualizada con éxito');
+        return redirect()->route('admin.categories.index')->with('status', 'Categoría actualizada con éxito ✅👍');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('status', 'Categoría eliminada con éxito');
+        return redirect()->route('admin.categories.index')->with('status', 'Categoría eliminada con éxito ✅👍');
     }
 }

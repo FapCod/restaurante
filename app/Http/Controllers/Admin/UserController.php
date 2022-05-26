@@ -14,7 +14,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
@@ -36,7 +36,7 @@ class UserController extends Controller
         $request->merge(['password' => bcrypt($request->password)]);
         $user = User::create($request->all());
         $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.index')->with('success', 'User creado satisfactoriamente ✅');
+        return redirect()->route('admin.users.index')->with('status', 'User creado satisfactoriamente ✅👍');
     }
 
    
@@ -58,7 +58,7 @@ class UserController extends Controller
         $request->validate([
             'name' => "required|max:255,name,{$user->id}",
             'email' => "required|email|unique:users,email,{$user->id}",
-            'password' => 'same:confirm-password',
+            'password' => 'nullable|confirmed|min:8',
         ]);
 
         if (!empty($request->password)) {
@@ -68,13 +68,13 @@ class UserController extends Controller
         }
         $user->update($request->all());
         $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.index')->with('status', 'User actualizado correctamente ✅');
+        return redirect()->route('admin.users.index')->with('status', 'User actualizado correctamente ✅👍');
     }
 
    
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')->with('status', 'Usuario eliminado correctamente ✅');
+        return redirect()->route('admin.users.index')->with('status', 'Usuario eliminado correctamente ✅👍');
     }
 }

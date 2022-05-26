@@ -15,7 +15,7 @@ class BrandController extends Controller
     }
     public function index()
     {
-        $brands = Brand::all();
+        $brands = Brand::paginate(10);
         return view('admin.brands.index', compact('brands'));
     }
 
@@ -41,7 +41,7 @@ class BrandController extends Controller
         // if($request->id){
         //     $brand->categories()->attach($request->id);
         // }
-        return redirect()->route('admin.brands.edit',$brand)->with('status', 'Marca creada con éxito');
+        return redirect()->route('admin.brands.index')->with('status', 'Marca creada con éxito✅👍');
     }
 
   
@@ -75,7 +75,7 @@ class BrandController extends Controller
             'slug' => "required|unique:brands,slug,{$brand->id}",
         ]);
         $brand->update($request->all());
-        return redirect()->route('admin.brands.edit',$brand)->with('status', 'Marca actualizada con éxito');
+        return redirect()->route('admin.brands.index')->with('status', 'Marca actualizada con éxito ✅👍');
     }
 
     /**
@@ -87,6 +87,6 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         $brand->delete();
-        return redirect()->route('admin.brands.index')->with('status', 'Marca eliminada con éxito');
+        return redirect()->route('admin.brands.index')->with('status', 'Marca eliminada con éxito ✅👍');
     }
 }

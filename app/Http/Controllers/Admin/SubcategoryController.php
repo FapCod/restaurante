@@ -15,7 +15,7 @@ class SubcategoryController extends Controller
     }
     public function index()
     {
-        $subcategories = Subcategory::all();
+        $subcategories = Subcategory::paginate(10);
         return view('admin.subcategories.index', compact('subcategories'));
     }
 
@@ -35,7 +35,7 @@ class SubcategoryController extends Controller
             'slug' => 'required|unique:subcategories',
         ]);
         $subcategory = Subcategory::create($request->all());
-        return redirect()->route('admin.subcategories.edit',$subcategory)->with('status', 'Subcategoría creada con éxito');
+        return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría creada con éxito ✅👍');
     }
 
    
@@ -59,13 +59,13 @@ class SubcategoryController extends Controller
             'slug' => "required|unique:subcategories,slug,{$subcategory->id}",
         ]);
         $subcategory->update($request->all());
-        return redirect()->route('admin.subcategories.edit',$subcategory)->with('status', 'Subcategoría actualizada con éxito');
+        return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría actualizada con éxito ✅👍');
     }
 
   
     public function destroy(Subcategory $subcategory)
     {
         $subcategory->delete();
-        return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría eliminada con éxito');
+        return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría eliminada con éxito ✅👍');
     }
 }

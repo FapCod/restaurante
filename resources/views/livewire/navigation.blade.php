@@ -161,7 +161,7 @@
                 </div>
             @else
                 <a href="{{ route('login') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                    class="text-gray-100 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ingresar</a>
             <a href="#" @endauth </div>
         </div>
 

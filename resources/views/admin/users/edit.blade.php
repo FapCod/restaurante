@@ -18,9 +18,6 @@
     <div class="p-2">
         <div class="card text-dark" style="background-color: #F7D24E">
             <div class="card-body">
-                <p class="h5">Nombre:</p>
-                <p class="form-control">{{ $user->name }}</p>
-                <h2 class="h5">Listado de roles:</h2>
                 {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Nombre') !!}
@@ -40,14 +37,14 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('password', 'Contraseña') !!}
-                    {!! Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder' => 'Ingresa la contraseña']) !!}
+                    {!! Form::password('password',['class' => 'form-control', 'id' => 'password', 'placeholder' => 'Ingresa la contraseña','autocomplete' => 'off']) !!}
                     @error('password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     {!! Form::label('password_confirmation', 'Confirmar contraseña') !!}
-                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation', 'placeholder' => 'Confirma la contraseña']) !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation', 'placeholder' => 'Confirma la contraseña','autocomplete' => 'off']) !!}
                     @error('password_confirmation')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -59,7 +56,7 @@
                     </div>
                 @endforeach
                 <div class="form-group">
-                    {!! Form::submit('Actualizar rol', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Actualizar Usuario', ['class' => 'btn btn-primary']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

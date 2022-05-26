@@ -35,6 +35,8 @@
     </style>
     <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
         <!--Title-->
+        {{-- poner una imagen en la esquina izquierda --}}
+        <img src="{{ asset('img/logo.png') }}" alt="logo" width="100" height="100" />
         <h1>
             Productos
         </h1>

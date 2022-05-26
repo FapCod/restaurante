@@ -9,9 +9,11 @@ use Spatie\Permission\Models\Permission;
 class RoleController extends Controller
 {
     
+    protected $paginationTheme = 'bootstrap';
     public function index()
     {
-        $roles = Role::all();
+        
+        $roles = Role::paginate(10);
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -30,7 +32,7 @@ class RoleController extends Controller
         ]);
         $role = Role::create($request->all());
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('admin.roles.index')->with('status','Rol creado correctamente✅');
+        return redirect()->route('admin.roles.index')->with('status','Rol creado con exito ✅👍');
     }
 
     
@@ -54,13 +56,13 @@ class RoleController extends Controller
         ]);
         $role->update($request->all());
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('admin.roles.index')->with('status','Rol actualizado correctamente✅');
+        return redirect()->route('admin.roles.index')->with('status','Rol actualizado correctamente✅👍');
     }
 
    
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->route('admin.roles.index')->with('status','Rol eliminado correctamente✅');
+        return redirect()->route('admin.roles.index')->with('status','Rol eliminado correctamente✅👍');
     }
 }

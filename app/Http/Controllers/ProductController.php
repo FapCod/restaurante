@@ -70,11 +70,11 @@ class ProductController extends Controller
             'stock' => 'required|numeric:min:0'
         ]);
         if($presentation->stock < $request->stock || $request->stock < 0){
-            return back()->with('status','No se pudo hacer la operacion');
+            return back()->with('status','No se pudo hacer la operacion😢❌');
         }
         $presentation->stock = $presentation->stock - $request->stock;
         $presentation->save();
-        return back()->with('status','Stock actualizado');
+        return back()->with('status','Stock actualizado✅👍');
        
     }
     public function updatestockProduct(Request $request,Product $product){
@@ -82,11 +82,11 @@ class ProductController extends Controller
             'stock' => 'required|numeric:min:0'
         ]) ;
         if($product->stock < $request->stock || $request->stock < 0){
-            return back()->with('status','No se pudo hacer la operacion');
+            return back()->with('status','No se pudo hacer la operacion😢❌');
         }
         $product->stock = $product->stock - $request->stock;
         $product->save();
-        return back()->with('status','Stock actualizado');
+        return back()->with('status','Stock actualizado✅👍');
     }
 
 }
