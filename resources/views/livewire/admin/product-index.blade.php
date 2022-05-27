@@ -40,9 +40,11 @@
                                 <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-primary">Editar</a>
                             </td>
                             <td width="100">
-                                {!! Form::open(['route' => ['admin.products.destroy',$product], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el producto?")']) !!} 
+                                {{-- {!! Form::open(['route' => ['admin.products.destroy',$product], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el producto?")']) !!} 
                                 {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}  
-                                {!! Form::close() !!}
+                                {!! Form::close() !!} --}}
+                                <input type="hidden" class="serdelete_val_id" value="{{ $product->id }}">
+                                <button type="submit" class="btn btn-danger eliminar">Eliminar</button>
                             </td>
                         </tr>
                         @endforeach

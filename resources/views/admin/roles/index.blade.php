@@ -10,9 +10,24 @@
 
 @section('content')
     @if (session('status'))
-    <div class="alert alert-success" rol="alert">
+    {{-- <div class="alert alert-success" rol="alert">
         {{ session('status') }}
-    </div>
+    </div> --}}
+    @section('js')
+    <script>
+        console.log("{{ session('status') }}");
+        Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title:  "{{ session('status') }}",
+            showConfirmButton: false,
+            timer: 1500
+        }).then(result => {
+                    window.location.reload();
+                });
+        
+    </script>
+    @stop
     @endif
     <div class="card text-dark" style="background-color: #F7D24E">
         <div class="card-header">
@@ -37,9 +52,11 @@
                                 <a href="{{route('admin.roles.edit', $role)}}" class="btn btn-primary">Editar</a>
                             </td>
                             <td width="100">
-                                {!! Form::open(['route' => ['admin.roles.destroy',$role], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el Rol?")']) !!} 
+                                {{-- {!! Form::open(['route' => ['admin.roles.destroy',$role], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el Rol?")']) !!} 
                                 {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}  
-                                {!! Form::close() !!}
+                                {!! Form::close() !!} --}}
+                                <input type="hidden" class="serdelete_val_id" value="{{ $role->id }}">
+                                <button type="submit" class="btn btn-danger eliminar">Eliminar</button>
                             </td>
                             
                         </tr>
@@ -58,5 +75,56 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+     $(document).ready(function() {
+                $('.eliminar').click(function(e) {
+                    e.preventDefault();
+                    var role = $(this).closest('tr').find('.serdelete_val_id').val();
+                    
+                    Swal.fire({
+                        title: 'Estas seguro?',
+                        text: "Esto no se podra revertir! ",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Eliminarlo!'
+                    }).then((result) => {
+                        if (result.value == true) {
+                            $.ajax({
+                            type: 'DELETE',
+                            url: '{{ url("admin/roles") }}/'+role,
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'id':role,
+
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                    Swal.fire(
+                                        'Eliminado!',
+                                        'Tu registro ha sido eliminado.',
+                                        'success'
+                                    ).then(result => {
+                                        window.location.reload();
+                                    });
+                            }
+                        })
+                           
+                        } else {
+                            Swal.fire(
+                                'Cancelado',
+                                'El elemento no fue eliminado',
+                                'success'
+                            )
+                            return false;
+                        }
+                        console.log(result);
+
+                    })
+                });
+            });
+    
+    
+    </script>
 @stop

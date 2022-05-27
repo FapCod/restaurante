@@ -36,7 +36,7 @@ class ReportController extends Controller
                 $products = Product::all();
         } 
         $pdf = PDF::loadView('admin.reports.reportPdf', compact('products','start_date', 'end_date', 'status'));
-        return $pdf->stream('PDFProductos.pdf');
+        return $pdf->stream('PDFProductos-'.time().'.pdf');
         
     }
     public function createPdfStatus($status){
@@ -44,6 +44,6 @@ class ReportController extends Controller
         $end_date="";
         $products = Product::where('status',$status)->orderBy('id','DESC')->get();
         $pdf = PDF::loadView('admin.reports.reportPdf', compact('products','start_date', 'end_date', 'status'));
-        return $pdf->stream('PDFProductos.pdf');
+        return $pdf->stream('PDFProductos-'.time().'.pdf');
     }
 }

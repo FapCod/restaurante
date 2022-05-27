@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EnviarAvisoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,8 @@ Route::put('product/stock/{product}',[ProductController::class,'updatestockProdu
 Route::get('category/{category}',[ProductController::class,'category'])->name('product.category');
 
 Route::get('subcategory/{subcategory}',[ProductController::class,'subcategory'])->name('product.subcategory');
+//enviar correo
+Route::get('enviarcorreo/{product}/{user}', [EnviarAvisoController::class, 'store'])->name('enviarcorreo.store');
 
 Route::middleware([
     'auth:sanctum',

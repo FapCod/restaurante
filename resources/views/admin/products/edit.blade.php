@@ -11,9 +11,24 @@
 @section('plugins.Sweetalert2', true)
 @section('content')
     @if (session('status'))
-    <div class="alert alert-success" role="alert">
+    {{-- <div class="alert alert-success" role="alert">
         {{ session('status') }}
-    </div>
+    </div> --}}
+    @section('js')
+    <script>
+        console.log("{{ session('status') }}");
+        Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title:  "{{ session('status') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        function hola(){
+            console.log("{{ session('status') }} x2");
+        }
+    </script>
+    @stop
     @endif
     @livewire('admin.edit-product', ['product' => $product])
 @stop

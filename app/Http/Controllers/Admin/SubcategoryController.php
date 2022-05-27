@@ -63,9 +63,11 @@ class SubcategoryController extends Controller
     }
 
   
-    public function destroy(Subcategory $subcategory)
+    public function destroy( $subcategory)
     {
+        $subcategory = Subcategory::find($subcategory);
         $subcategory->delete();
-        return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría eliminada con éxito ✅👍');
+        // return redirect()->route('admin.subcategories.index')->with('status', 'Subcategoría eliminada con éxito ✅👍');
+        return response()->json(['status'=>'Subcategoria eliminada con exito ✅👍']);
     }
 }

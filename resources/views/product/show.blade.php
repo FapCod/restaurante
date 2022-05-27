@@ -1,6 +1,6 @@
 <div class="bg-cover w-full " style="background-image: url('{{ asset('img/bgg.png') }}');">
     <x-app-layout>
-        
+
         <div class="container py-8 ">
             <h1 class=" text-4xl font-bold text-gray-800">{{ $product->name }}</h1>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -23,9 +23,15 @@
                     </div>
                     {{-- presentaciones --}}
                     @if (session('status'))
-                        <div class="alert alert-danger mb-4" role="alert">
-                            {{ session('status') }}
-                        </div>
+                        <script>
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title:  '{{ session('status') }}',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        </script>
                     @endif
                     @if ($presentations->count() > 0)
                         <div class="overflow-x-auto ">
@@ -78,8 +84,7 @@
                                     @endforeach
                                 </tbody>
                             </table> --}}
-                            <table
-                                class="rounded-t-lg rounded-b-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+                            <table class="rounded-t-lg rounded-b-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
                                 <thead>
                                     <tr class="text-left border-b-2 border-gray-300">
                                         <th class="px-4 py-3">Presentacion</th>
@@ -98,12 +103,13 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <td class="py-3">
-                                                    <input name="stock" id="stock" type="number" required placeholder="0" min="0"
+                                                    <input name="stock" id="stock" type="number" required
+                                                        placeholder="0" min="0"
                                                         class="input input-bordered bg-yellow-500 text-white w-full max-w-xs">
                                                     @error('stock')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
-                                                    
+
                                                 </td>
                                                 <td class="">
                                                     <button type="submit" class="ml-4 btn bg-yellow-500 text-white">
@@ -122,13 +128,19 @@
                                                                 Stock bajo
                                                             </strong>
                                                         </p>
+                                                        <p>
+                                                            {{-- boton para enviar correo --}}
+                                                            <a class="mr-2 text-gray-800 cursor-pointer dark:text-gray-400 hover:text-gray-100 dark:hover:text-gray-300 btn btn-secondary"
+                                                                href="{{ route('enviarcorreo.store', [$product->id, auth()->id()]) }}">Enviar
+                                                                aviso por correo del stock</a>
+                                                        </p>
                                                     </div>
                                                 </th>
                                             </tr>
                                         @endif
                                     @endforeach
                                 </tbody>
-                               
+
                             </table>
                         </div>
                     @endif
@@ -146,7 +158,7 @@
                                 <form action="{{ route('product.updatestockproduct', $product) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <div >
+                                    <div>
                                         <label class="text-gray-100">
                                             <span class="text-xl font-bold">Cantidad</span>
                                             <input required name="stock" id="stock" type="number" placeholder="0"
@@ -175,7 +187,7 @@
                                     </div>
                                 </div>
                             @elseif ($product->stock <= 5)
-                                <div class="alert alert-warning shadow-lg mt-4">
+                                <div class="alert bg-red-500 text-white shadow-lg py-2 mb-2">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
@@ -186,9 +198,16 @@
                                         <span>Advertencia: Stock Bajo!</span>
                                     </div>
                                 </div>
+                                <div class="text-center px-2 py-2">
+                                    {{-- boton para enviar correo --}}
+                                    <a class="mr-2 text-gray-800 cursor-pointer dark:text-gray-400 hover:text-gray-100 dark:hover:text-gray-300 btn btn-secondary"
+                                        href="{{ route('enviarcorreo.store', [$product->id, auth()->id()]) }}">Enviar
+                                        aviso por correo del stock</a>
+
+                                </div>
                             @endif
                         </div>
-                        
+
                     @endif
                     {{-- fin de stock --}}
                 </div>

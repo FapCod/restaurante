@@ -85,7 +85,7 @@ class CreateProduct extends Component
             ]);
         }
         
-        return redirect()->route('admin.products.edit',$product);
+        return redirect()->route('admin.products.edit',$product)->with('status', 'Producto creado con éxito✅👍');
     }
     public function render()
     {

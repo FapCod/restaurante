@@ -66,9 +66,11 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('status', 'Categoría actualizada con éxito ✅👍');
     }
 
-    public function destroy(Category $category)
+    public function destroy($category)
     {
+        $category = Category::find($category);
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('status', 'Categoría eliminada con éxito ✅👍');
+        // return redirect()->route('admin.categories.index')->with('status', 'Categoría eliminada con éxito ✅👍');
+        return response()->json(['status'=>'Categoria eliminada con exito ✅👍']);
     }
 }

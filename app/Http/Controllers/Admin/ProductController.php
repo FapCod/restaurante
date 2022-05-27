@@ -133,11 +133,13 @@ class ProductController extends Controller
     }
 
    
-    public function destroy(Product $product)
+    public function destroy($product)
     {
-        $this->authorize('author', $product);
+        // $this->authorize('author', $product);
+        $product = Product::find($product);
         $product->delete();
         // Cache::flush();
-        return redirect()->route('admin.products.index')->with('status', '✅Producto eliminado con éxito👍');
+        // return redirect()->route('admin.products.index')->with('status', '✅Producto eliminado con éxito👍');
+        return response()->json(['status'=>'Producto eliminado con exito ✅👍']);
     }
 }

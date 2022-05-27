@@ -32,9 +32,11 @@
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary">Editar</a>
                         </td>
                         <td width="100">
-                            {!! Form::open(['route' => ['admin.users.destroy',$user], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el user?")']) !!} 
+                            {{-- {!! Form::open(['route' => ['admin.users.destroy',$user], 'method' => 'delete','onsubmit' => 'return confirm("Esta seguro de borrar el user?")']) !!} 
                             {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}  
-                            {!! Form::close() !!}
+                            {!! Form::close() !!} --}}
+                            <input type="hidden" class="serdelete_val_id" value="{{ $user->id }}">
+                            <button type="submit" class="btn btn-danger eliminar">Eliminar</button>
                         </td>
                     </tr>
                     @endforeach

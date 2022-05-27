@@ -60,9 +60,11 @@ class RoleController extends Controller
     }
 
    
-    public function destroy(Role $role)
+    public function destroy($role)
     {
+        $role = Role::find($role);
         $role->delete();
-        return redirect()->route('admin.roles.index')->with('status','Rol eliminado correctamente✅👍');
+        // return redirect()->route('admin.roles.index')->with('status','Rol eliminado correctamente✅👍');
+        return response()->json(['status'=>'Rol eliminado con exito ✅👍']);
     }
 }
