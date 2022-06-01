@@ -19,7 +19,8 @@ class UsersIndex extends Component
     public function render()
     {
         $users = User::where('name','like','%'.$this->search.'%')
-        ->orWhere('email','like','%'.$this->search.'%')           
+        ->orWhere('email','like','%'.$this->search.'%') 
+        ->orderBy('id','DESC')          
         ->paginate(10);
         return view('livewire.admin.users-index', compact('users'));
     }

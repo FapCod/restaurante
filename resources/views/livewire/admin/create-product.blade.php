@@ -96,7 +96,7 @@
             </div>
             {{-- fin marcas y stock --}}
             {{-- IMAGEN --}}
-            <p>{{ $this->file }}</p>
+          
            
             <div class="row mb-3">
                 <div class="col">

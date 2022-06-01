@@ -23,10 +23,10 @@
             title:  "{{ session('status') }}",
             showConfirmButton: false,
             timer: 1500
+        }).then(function() {
+            //actualizar pagina
+            window.location.reload();                          
         });
-        function hola(){
-            console.log("{{ session('status') }} x2");
-        }
     </script>
     @stop
     @endif

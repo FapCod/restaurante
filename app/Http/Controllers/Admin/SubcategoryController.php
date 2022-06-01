@@ -15,7 +15,7 @@ class SubcategoryController extends Controller
     }
     public function index()
     {
-        $subcategories = Subcategory::paginate(10);
+        $subcategories = Subcategory::orderBy('id', 'DESC')->paginate(10);
         return view('admin.subcategories.index', compact('subcategories'));
     }
 

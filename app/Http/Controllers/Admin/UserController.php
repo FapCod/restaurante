@@ -14,7 +14,8 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users = User::paginate(10);
+        // obtener los usuarios desde su id de forma descendiente
+        $users = User::orderBy('id', 'DESC')->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 

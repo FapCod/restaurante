@@ -4,7 +4,7 @@
         <input wire:model="search" type="text" class="form-control" placeholder="Buscar user">
     </div>
     @if ($users->count() > 0)
-        <div class="card-body">
+        <div class="card-body overflow-auto">
             <table  class="table table-striped">
                 <thead>
                     <tr>

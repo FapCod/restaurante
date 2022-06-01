@@ -28,8 +28,7 @@ class CreateProduct extends Component
         'subcategory_id' => 'required',
         'name' => 'required|unique:products',
         'slug' => 'required|unique:products',
-        'status' => 'required|in:1,2',
-        'file' => 'image|max:1024',
+        'status' => 'required|in:1,2'
     ];
 
     public function updatedCategoryId($value){

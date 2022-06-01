@@ -43,7 +43,9 @@ class ReportController extends Controller
         $start_date="";
         $end_date="";
         $products = Product::where('status',$status)->orderBy('id','DESC')->get();
+        // $paper_size = array(0,0,360,900);
         $pdf = PDF::loadView('admin.reports.reportPdf', compact('products','start_date', 'end_date', 'status'));
+        // ->setPaper($paper_size)
         return $pdf->stream('PDFProductos-'.time().'.pdf');
     }
 }

@@ -88,7 +88,7 @@
                     @if ($this->subcategory->presentation == 1)
                         <div class="form-group col sm:col-md-auto">
                             <x-jet-label value="Stock" />
-                            <x-jet-input wire:model="product.stock" type="number" class="form-control"
+                            <x-jet-input wire:model="stock" type="number" class="form-control"
                                 placeholder="Ingrese la cantidad" />
                             <x-jet-input-error class="text-danger" for="stock" />
                         </div>
@@ -97,9 +97,7 @@
             </div>
             {{-- fin marcas y stock --}}
             {{-- IMAGEN --}}
-            <p>{{ $file }}</p>
-            {{ $this->product->image }}
-            {{-- <p>{{ $this->product->image->url }}</p> --}}
+            {{-- {{ $this->product->image }} --}}
             <div class="row mb-3">
                 <div class="col">
                     <div class="image-wrapper" wire:ignore>
