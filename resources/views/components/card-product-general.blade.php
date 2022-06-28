@@ -11,7 +11,8 @@
     </figure>
     <div class="card-body  ">
         <h2 class="card-title text-4xl leading-8 font-semibold text-white">
-            <a href="{{ route('product.show', $product) }}">{{ $product->name }}</a>
+            {{-- <a href="{{ route('product.show', $product) }}">{{ $product->name }}</a> --}}
+            {{ $product->name }}
         </h2>
         <p>{{ $product->description }}</p>
         <div class="text-sm breadcrumbs">
@@ -33,9 +34,13 @@
                 class="inline-block px-3 bg-cyan-600 h-6 text-white rounded-full hover:bg-white hover:text-black">{{ $product->subcategory->name }}</a>
         </div>
         <div class="card-actions justify-end">
-            <button class="btn bg-gray-800 text-white">
-                <a href="{{ route('product.show', $product) }}">Usar</a>
-            </button>
+            @auth
+                <button class="btn bg-gray-800 text-white">
+                    <a href="{{ route('product.show', $product) }}">Usar</a>
+                </button>
+            @else
+                
+            @endauth
         </div>
 
     </div>

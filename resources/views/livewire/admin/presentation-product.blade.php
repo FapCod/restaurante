@@ -17,7 +17,7 @@
         </div>
         <div>
             <x-jet-label>Stock</x-jet-label>
-            <x-jet-input wire:model.defer="stock" type="number" class="form-control" />
+            <x-jet-input wire:model.defer="stock" type="number" class="form-control" min="0"/>
             @error('stock')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

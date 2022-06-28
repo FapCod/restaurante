@@ -88,7 +88,7 @@
                         <div class="form-group col sm:col-md-auto">
                             <x-jet-label value="Stock" />
                             <x-jet-input wire:model="stock" type="number" class="form-control"
-                                placeholder="Ingrese la cantidad" />
+                                placeholder="Ingrese la cantidad"  min="0"/>
                             <x-jet-input-error class="text-danger" for="stock" />
                         </div>
                     @endif
